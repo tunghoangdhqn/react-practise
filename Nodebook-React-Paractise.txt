@@ -1,0 +1,12 @@
+# SPA - single page application 
+    shopee, facebook, twitter
+    CSR: client side rendering
+# MPA
+    dantri.com
+    PHP
+    SSR: server side rendering
+
+#JS nền tảng:
+    - Destructuring: {a,b,c} = d;
+    - Spread: {}= {...a, ...b}
+#CDN: content delivery network

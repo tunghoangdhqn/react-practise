@@ -1,0 +1,109 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Add React</h1>
+    <div id="root"></div>
+    <script>
+        const ulDOM = document.createElement('ul');
+        ulDOM.id = 'h1';
+        const liDOM1 = document.createElement('li');
+        liDOM1.innerText = 'Javascript';
+        const liDOM2 = document.createElement('li');
+        liDOM2.innerText = 'Reactjs';
+        ulDOM.appendChild(liDOM1);
+        ulDOM.appendChild(liDOM2);
+        document.body.appendChild(ulDOM);
+        // react
+        const ulReact = React.createElement(
+            'ul',
+            {
+                id: 'ul-react',
+                style: 'color:read; font-size: 30px',
+            },
+            React.createElement('li', null, 'Javascript'),
+            React.createElement('li', null, 'Reactjs'),
+        );
+
+        console.log(ulReact);
+    </script>
+    <script>
+        const postItem = React.createElement(
+            'div',
+            {
+                className: 'post-item'
+
+            },
+            React.createElement(
+                'h2',
+                {
+                    title: 'tile 1'
+                },
+                'content 1'
+            ),
+            React.createElement(
+                'p',
+                null,
+                'content from p tag'
+            )
+        );
+        console.log(postItem);
+        // root
+        const rootContainer = document.getElementById('root');
+
+        //ReactDOM.render(postItem, root);
+        // 18
+        var root = ReactDOM.createRoot(rootContainer);
+        root.render(postItem);
+
+    </script>
+
+    <script type="text/babel">
+        //
+        const reactVar = [
+            { name: 'a,b' },
+            { name: 'c,d' },
+            { name: 'e,f' }
+        ];
+        const ul = <ul>
+            {
+                reactVar.map((value, index) => <li key={index}>{value.name}</li>)
+            }
+            <li>title 2311</li>
+        </ul>;
+        root.render(ul);
+        //
+        function Header() {
+            return (
+                <div className="header">New Header</div>
+            );
+        }
+        class Content extends React.Component {
+            render() {
+                return (<div className="header">Content</div>);
+            }
+        }
+        const test2 = (<div className="wrapper">
+            <Header />
+            <Content />
+
+            <div className="header">Footer</div>
+        </div>);
+
+        root.render(test2);
+        console.log("test:", test2);
+
+    </script>
+
+</body>
+
+</html>
