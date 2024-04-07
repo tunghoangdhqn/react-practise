@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const Form = {
+            Input() {
+                return <input />;
+            },
+            Checkbox() {
+                return <input type="Checkbox" />;
+            }
+        };
+
+        function Button(props) {
+            let Component = 'button';
+            const propsTmp = {};
+
+            if (props.href) {
+                propsTmp.href = props.href;
+                Component = 'a';
+            }
+
+            if (props.onClick) {
+                propsTmp.onClick = props.onClick;
+            }
+
+            return (
+                <Component {...propsTmp}>{props.title}</Component>
+            );
+        }
+
+        function App({ content }) {
+            const type = 'Input';
+            const Component = Form[type];
+
+            let firstAccess = true;
+            return (
+                <div className="wrapper">
+                    {firstAccess && <h1>Welcom to F8</h1>}
+                    <h3>{content || "Default content"}</h3>
+                    <Form.Input />
+                    <Form.Checkbox />
+                    <Component />
+                    <Button
+                        title="Click me"
+                        href="https://dantri.com.vn/"
+                        onClick={() => console.log(Math.random())}
+                    />
+                </div>
+            );
+        }
+        const root = ReactDOM.createRoot(document.querySelector("#root"));
+        root.render(<App content="" title="" />);
+
+    </script>
+</body>
+
+</html>

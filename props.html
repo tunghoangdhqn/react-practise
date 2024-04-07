@@ -14,20 +14,26 @@
 
     <script type="text/babel">
 
-        function CourseItem({ course, index }) {
-            console.log("course:", course);
+        function CourseItem({ course, index, onClick }) {
+            //console.log("course:", course);
+
             return (
                 <div className="course-item" >
-                    <h2>{course.title}</h2>
+                    <h2 onClick={() => onClick(course)}>{course.title}</h2>
                     <p>{course.description}</p>
                 </div >
             );
         }
-        function Courses({ Courses }) {
-            console.log("Courses:", Courses);
+        function Courses({ Courses, onClick }) {
+            //console.log("Courses:", Courses);
 
             return Courses.map((course, index) => {
-                return <CourseItem key={index} course={course} index={index} />;
+                return <CourseItem
+                    key={index}
+                    course={course}
+                    index={index}
+                    onClick={onClick}
+                />;
             });
         }
 
@@ -156,10 +162,16 @@
                     "is_published": true
                 }
             ];
+
+            function handleClick(course) {
+                console.log("handle Click", course.title);
+            };
+
             return (
                 <div className="wrapper">
                     <Courses
                         Courses={allCourses}
+                        onClick={handleClick}
                     />
                 </div>
             );
