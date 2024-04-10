@@ -23,7 +23,7 @@
             }
         };
 
-        function Button(props) {
+        function Button2(props) {
             let Component = 'button';
             const propsTmp = {};
 
@@ -41,10 +41,33 @@
             );
         }
 
+        function Button({ children }) {
+            return (
+                <button>{children}</button>
+            );
+        }
+
+        function Input({ label, ...inputProps }) {
+            return (
+                <div>
+                    <label htmlFor="">{label}</label>
+                    <input {...inputProps} />
+                </div>
+            );
+        }
+
+        function List({ data, children }) {
+            return (
+                <ul>
+                    {data.map((car, index) => children(car, index))}
+                </ul>
+            );
+        }
+
         function App({ content }) {
+            const cars = ["car 1", "car 2", "car 3"];
             const type = 'Input';
             const Component = Form[type];
-
             let firstAccess = true;
             return (
                 <div className="wrapper">
@@ -53,11 +76,23 @@
                     <Form.Input />
                     <Form.Checkbox />
                     <Component />
-                    <Button
+                    <Button2
                         title="Click me"
                         href="https://dantri.com.vn/"
                         onClick={() => console.log(Math.random())}
                     />
+                    <Input
+                        label="full name"
+                        type="text"
+                        placeholder="enter name..."
+                        onFocus={() => {
+                            console.log(Math.random());
+                        }}
+                    />
+                    <Button>Child Props 123</Button>
+                    <List data={cars}>
+                        {(car, index) => { return (<li key={index}>{car}</li>); }}
+                    </List>
                 </div>
             );
         }
