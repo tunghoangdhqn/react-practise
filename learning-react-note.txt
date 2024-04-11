@@ -1,0 +1,8 @@
+hook: là các hàm, thường gắn vào component
+    #useState
+        - theo dõi các thay đổi để cấp nhật UI
+        - dữ liệu thay đổi => thay đổi theo
+        - component được render lại khi gọi setState
+        - init state gọi 1 lần đầu: useState()
+        - inital state có thể nhận 1 callback, set giá chị return làm init state
+        - setState là thay thế state bằng giá trị mới
