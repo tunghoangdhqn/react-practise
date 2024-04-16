@@ -1,40 +1,17 @@
 
 import { useState } from 'react';
+import { useEffect } from 'react';
 
-const gifts = [
-  'gifts 1',
-  'gifts 2',
-  'gifts 3'
-];
+import Content from './Content';
+
 
 function App() {
+  const [showContent, setShowContent] = useState(false);
 
-  const [gift, setGift] = useState();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-
-  console.log(name);
-
-  const randomGift = () => {
-    const index = Math.floor(Math.random() * gifts.length);
-    setGift(gifts[index]);
-  };
-
-  const handleSubmit = () => {
-    console.log({
-      name,
-      email
-    });
-  };
   return (
     <div>
-      <h1>{gift || `Chua co phan thuong`}</h1>
-      <button onClick={randomGift} >Lay thuong</button>
-      <br />
-      <input value={name} onChange={e => setName(e.target.value)} />
-      <input value={email} onChange={e => setEmail(e.target.value)} />
-      <button onClick={handleSubmit}>Submit Form</button>
-
+      <button onClick={() => { setShowContent(!showContent); }}>Toggle content</button>
+      {showContent && <Content />}
     </div>
   );
 }
