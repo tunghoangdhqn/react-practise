@@ -1,41 +1,49 @@
 
 import { useState } from 'react';
-
-const gifts = [
-    'gifts 1',
-    'gifts 2',
-    'gifts 3'
-];
+import Content from './Content';
 
 function App() {
+  // Get localstorage
+  const [country, setCountry] = useState('');
+  const [countries, setCountries] = useState(() => {
+    const storageCountries = JSON.parse(localStorage.getItem('countries'));
+    return storageCountries ?? [];
+  });
 
-    const [gift, setGift] = useState();
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+  const [showContent, setShowContent] = useState(false);
 
-    console.log(name);
+  const handleAddCountry = () => {
+    setCountries(prevState => {
+      const newCountries = [...prevState, country];
 
-    const randomGift = () => {
-        const index = Math.floor(Math.random() * gifts.length);
-        setGift(gifts[index]);
-    };
+      // save localstorage
+      const jsonCountries = JSON.stringify(newCountries);
+      console.log(jsonCountries);
+      localStorage.setItem('countries', jsonCountries);
 
-    const handleSubmit = () => {
-        console.log({
-            name,
-            email
-        });
-    };
-    return (
-        <div>
-            <h1>{gift || `Chua co phan thuong`}</h1>
-            <button onClick={randomGift} >Lay thuong</button>
-            <br />
-            <input value={name} onChange={e => setName(e.target.value)} />
-            <input value={email} onChange={e => setEmail(e.target.value)} />
-            <button onClick={handleSubmit}>Submit Form</button>
+      return newCountries;
+    });
+    setCountry('');
+  };
+  return (
+    <div>
+      <input
+        value={country}
+        onChange={(e) => { setCountry(e.target.value); }}
+      />
 
-        </div>
-    );
+      <button onClick={handleAddCountry}>Add</button>
+      <ul>
+        {countries.map((country, index) => {
+          return (
+            <li key={index}>{country}</li>
+          );
+        })}
+      </ul>
+      <button onClick={() => { setShowContent(!showContent); }}>Toggle Show</button>
+      {showContent && <Content />}
+    </div>
+  );
 }
+
 export default App;
