@@ -1,49 +1,41 @@
 
 import { useState } from 'react';
-import Content from './Content';
+
+const gifts = [
+  'gifts 1',
+  'gifts 2',
+  'gifts 3'
+];
 
 function App() {
-  // Get localstorage
-  const [country, setCountry] = useState('');
-  const [countries, setCountries] = useState(() => {
-    const storageCountries = JSON.parse(localStorage.getItem('countries'));
-    return storageCountries ?? [];
-  });
 
-  const [showContent, setShowContent] = useState(false);
+  const [gift, setGift] = useState();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
-  const handleAddCountry = () => {
-    setCountries(prevState => {
-      const newCountries = [...prevState, country];
+  console.log(name);
 
-      // save localstorage
-      const jsonCountries = JSON.stringify(newCountries);
-      console.log(jsonCountries);
-      localStorage.setItem('countries', jsonCountries);
+  const randomGift = () => {
+    const index = Math.floor(Math.random() * gifts.length);
+    setGift(gifts[index]);
+  };
 
-      return newCountries;
+  const handleSubmit = () => {
+    console.log({
+      name,
+      email
     });
-    setCountry('');
   };
   return (
     <div>
-      <input
-        value={country}
-        onChange={(e) => { setCountry(e.target.value); }}
-      />
+      <h1>{gift || `Chua co phan thuong`}</h1>
+      <button onClick={randomGift} >Lay thuong</button>
+      <br />
+      <input value={name} onChange={e => setName(e.target.value)} />
+      <input value={email} onChange={e => setEmail(e.target.value)} />
+      <button onClick={handleSubmit}>Submit Form</button>
 
-      <button onClick={handleAddCountry}>Add</button>
-      <ul>
-        {countries.map((country, index) => {
-          return (
-            <li key={index}>{country}</li>
-          );
-        })}
-      </ul>
-      <button onClick={() => { setShowContent(!showContent); }}>Toggle Show</button>
-      {showContent && <Content />}
     </div>
   );
 }
-
 export default App;
