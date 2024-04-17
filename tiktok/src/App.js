@@ -4,9 +4,11 @@ import { useEffect } from 'react';
 
 import Content from './Content';
 
-
 function App() {
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(() => {
+    console.log('mounted');
+    return false;
+  });
 
   return (
     <div>
