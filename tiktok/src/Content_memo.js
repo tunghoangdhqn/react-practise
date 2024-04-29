@@ -1,13 +1,14 @@
 import { memo } from "react";
 
-function Content({ count, onIncrease }) {
+function Content({ count, handleIncrease }) {
   console.log("content log");
 
   return (
     <>
-      <button onClick={onIncrease}>Click count</button>
+      <button onClick={handleIncrease}>Click count 2</button>
       <h2>Country in Content{count}</h2>
     </>
+
   );
 }
 

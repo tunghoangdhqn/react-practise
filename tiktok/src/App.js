@@ -1,23 +1,61 @@
-import { useState, memo } from 'react';
+import { useState, memo, useCallback, useMemo, useRef } from 'react';
 import Content from './Content';
 function App() {
 
-  const [count, setCount] = useState(0);
-  const increase = () => {
-    setCount(count + 1);
-  };
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [products, setProducts] = useState([]);
 
-  const [count2, setCount2] = useState(0);
-  const increase2 = () => {
-    setCount2(count2 + 1);
+  const nameRef = useRef();
+
+  const handlSubmit = () => {
+    setProducts([...products, {
+      name,
+      price: Number(price)
+    }]);
+    setName('');
+    setPrice('');
+    nameRef.current.focus();
   };
+  /*
+    const total = products.reduce((result, product) => {
+      console.log("run total funcion");
+      return result + product.price;
+    }, 0);
+  */
+  const total = useMemo(() => {
+    const result = products.reduce((result, product) => {
+      console.log("run total funcion");
+      return result + product.price;
+    }, 0);
+
+    return result;
+  }, [products]);
+
+
+  console.log(products);
+
+  //console.log(name);
+
   return (
     <div>
-      <Content count={count} />
-      <h1>{count}</h1>
-      <h1>{count2}</h1>
-      <button onClick={increase}>Click count 1</button>
-      <button onClick={increase2}>Click count 2</button>
+      <input
+        ref={nameRef}
+        value={name}
+        placeholder='name...'
+        onChange={e => { setName(e.target.value); }}
+      />
+      <br />
+      <input
+        value={price}
+        placeholder='price...'
+        onChange={e => { setPrice(e.target.value); }}
+      />
+      <br />
+      <button onClick={handlSubmit}>Add</button>
+      <br />
+      Total: {total}
+
     </div>
   );
 };
