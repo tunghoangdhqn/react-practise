@@ -1,11 +1,12 @@
-import { useState, memo } from 'react';
-import Content from './Content';
+import { useState, memo, useCallback } from 'react';
+import Content from '../Content';
 function App() {
 
   const [count, setCount] = useState(0);
-  const handleIncrease = () => {
+  const handleIncrease = useCallback(() => {
     setCount(count + 1);
-  };
+  }, [count]);
+
 
   const [count2, setCount2] = useState(0);
   const increase2 = () => {
@@ -13,10 +14,9 @@ function App() {
   };
   return (
     <div>
-      <Content count={count} onIncrease={count} />
+      <Content count={count} onIncrease={handleIncrease} />
       <h1>{count}</h1>
       <h1>{count2}</h1>
-
     </div>
   );
 };

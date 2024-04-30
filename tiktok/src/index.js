@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ThemeProvider } from './Context/ThemeContext';
+import { StoreProvider } from './GlobalState/store';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //console.log(React);
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
+    <StoreProvider>
       <App />
-    </ThemeProvider>
+    </StoreProvider>
   </React.StrictMode>
 );
 

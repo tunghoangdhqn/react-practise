@@ -1,5 +1,5 @@
 import { useState, memo, useCallback, useMemo, useRef, useReducer } from 'react';
-import Content from './Content';
+import Content from '../Content';
 
 // useReducer
 // init state

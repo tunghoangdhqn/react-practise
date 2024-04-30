@@ -1,14 +1,13 @@
-import Context from "./Context/Context";
-import { ThemeContext } from "./Context/ThemeContext";
 import { useContext } from "react";
+import { StoreContext } from "./GlobalState/store";
 
 function App() {
-  const context = useContext(ThemeContext);
+  const [state, dispatch] = useContext(StoreContext);
+  console.log(state);
+
   return (
     <div>
       <h1>app</h1>
-      <button onClick={context.toggleTheme}>Toggle theme</button>
-      <Context />
     </div>
   );
 }
