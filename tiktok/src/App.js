@@ -1,31 +1,29 @@
-import { useStore, actions } from "./GlobalState/store";
+
+import { useImperativeHandle, useRef, useEffect } from "react";
+import Video from "./UseImperativeHandle/Video";
+
 
 function App() {
-  const [state, dispatch] = useStore();
-  console.log(state);
+  const videoRef = useRef();
 
+  useEffect(() => {
+    console.log(videoRef);
+  });
 
-  const handleSubmit = () => {
-    dispatch(actions.addTodoTask(state.todoInput));
+  const handlePlay = () => {
+    videoRef.current.play();
   };
+  const handlePause = () => {
+    videoRef.current.pause();
+  };
+
   return (
     <div>
-      <input
-        value={state.todoInput}
-        onChange={e => {
-          dispatch(actions.setTodoInput(e.target.value));
-        }}
-      />
-      <button
-        onClick={handleSubmit}
-      >Add</button>
-
-      <ul>
-        {state.todos.map((todoTask, index) => {
-          return <li key={index}>{todoTask}</li>;
-        })}
-      </ul>
-    </div>
+      <h1>Hearding</h1>
+      <Video ref={videoRef} />
+      <button onClick={handlePlay}>Play</button>
+      <button onClick={handlePause}>Pause</button>
+    </div >
   );
 }
 
