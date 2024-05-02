@@ -1,0 +1,16 @@
+.btn {
+  background-color: blueviolet;
+
+  &:hover {
+    font-size: 40px;
+  }
+}
+
+.fontsize {
+  font-size: 40px;
+}
+
+.primary {
+  color: #fff;
+  background-color: #007;
+}
