@@ -1,12 +1,14 @@
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import ModuelCSS from "./LearnCSS/ModuleCSS";
+import ReactRouterTest from "./pages/ReactRouterTest";
 
 function App() {
 
   return (
-    <div>
-      <ModuelCSS primary />
-      <ModuelCSS />
-    </div >
+    <Router>
+      <ReactRouterTest />
+    </Router>
   );
 }
 
