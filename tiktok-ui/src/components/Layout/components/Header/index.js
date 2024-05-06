@@ -3,8 +3,10 @@ import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
+
 import images from '~/assets/images';
 import Tippy from '@tippyjs/react/headless';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 
 const cx = classNames.bind(styles);
 function Header() {
@@ -26,7 +28,7 @@ function Header() {
           interactive
           render={(attrs) => (
             <div className={cx('search-reult')} tabIndex="-1">
-              ket qua
+              <PopperWrapper>ket qua</PopperWrapper>
             </div>
           )}
         >
