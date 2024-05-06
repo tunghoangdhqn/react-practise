@@ -2,6 +2,7 @@
   --search-border-radius: 92px;
   --search-height: 46px;
   --search-top-spacer: 9px;
+  --search-button-with: 52px;
 
   width: 100%;
   height: var(--default-layout-header-height, 60px);
@@ -36,12 +37,17 @@
     color: var(--black);
     font-size: 1.6rem;
     background-color: transparent;
+    caret-color: var(--primary);
   }
+  input:not(:placeholder-shown) ~ .search-btn {
+    color: rgb(22, 24, 35);
+  }
+
   &::after {
     content: '';
     position: absolute;
     top: var(--search-top-spacer);
-    right: 52px;
+    right: var(--search-button-with);
     height: calc(var(--search-height) - var(--search-top-spacer) * 2);
     width: 1px;
     background-color: rgba(22, 24, 35, 0.06);
@@ -54,14 +60,15 @@
 .clear,
 .loading {
   position: absolute;
-  right: 52px;
+  right: calc(var(--search-button-with) + 16px);
   top: 50%;
   transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.06);
 }
 .loading {
 }
 .search-btn {
-  width: 52px;
+  width: var(--search-button-with);
   height: 100%;
   border-top-right-radius: var(--search-border-radius);
   border-bottom-right-radius: var(--search-border-radius);
@@ -71,5 +78,8 @@
   &:hover {
     background-color: rgba(22, 24, 35, 0.06);
     cursor: pointer;
+  }
+  &:active {
+    background-color: rgba(22, 24, 35, 0.03);
   }
 }
