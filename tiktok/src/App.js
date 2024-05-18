@@ -1,13 +1,10 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import ModuelCSS from "./LearnCSS/ModuleCSS";
-import ReactRouterTest from "./pages/ReactRouterTest";
+import Post from "./components/Post";
 
 function App() {
-
   return (
-    <Router>
-      <ReactRouterTest />
-    </Router>
+    <div>
+      <Post author="name" body="name2" />
+    </div>
   );
 }
 
